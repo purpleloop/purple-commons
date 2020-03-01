@@ -13,14 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 /** Utilities for Swing UI. */
 public final class SwingUtils {
-
-    /** Class logger. */
-    private static final Log LOG = LogFactory.getLog(SwingUtils.class);
 
     /** Private constructor. */
     private SwingUtils() {
