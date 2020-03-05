@@ -5,7 +5,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>purpleloop.commons</groupId>
+	<groupId>io.github.purpleloop</groupId>
 	<artifactId>purple-commons</artifactId>
 	<packaging>jar</packaging>
 	<name>PurpleLoop Commons</name>
