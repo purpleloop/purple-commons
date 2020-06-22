@@ -13,7 +13,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-/** Utilities for Swing UI. */
+/** Utilities for Swing UI.
+ * 
+ * Warning : In the future this class will be deprecated and moved with other stuff to a specific library dedicated to Java Swing .
+ * The intention is to separate GUI tools from others that does not require the module 'java.desktop'.
+ */
 public final class SwingUtils {
 
     /** Private constructor. */
