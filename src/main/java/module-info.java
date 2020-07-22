@@ -1,5 +1,6 @@
 module purpleloop.commons {
 		
+    exports purpleloop.commons.lang;
     exports purpleloop.commons.math;
     exports purpleloop.commons.swing;
     
