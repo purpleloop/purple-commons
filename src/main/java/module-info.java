@@ -1,11 +1,11 @@
 module purpleloop.commons {
 
-    exports purpleloop.commons.direction;
-    exports purpleloop.commons.exception;
-    exports purpleloop.commons.lang;
-    exports purpleloop.commons.math;
-    exports purpleloop.commons.util;
-    exports purpleloop.commons.xml;
+    exports io.github.purpleloop.commons.direction;
+    exports io.github.purpleloop.commons.exception;
+    exports io.github.purpleloop.commons.lang;
+    exports io.github.purpleloop.commons.math;
+    exports io.github.purpleloop.commons.util;
+    exports io.github.purpleloop.commons.xml;
 
     requires commons.logging;
     requires transitive java.xml;
