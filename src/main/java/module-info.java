@@ -1,4 +1,4 @@
-module purpleloop.commons {
+module io.github.purpleloop.commons {
 
     exports io.github.purpleloop.commons.direction;
     exports io.github.purpleloop.commons.exception;
