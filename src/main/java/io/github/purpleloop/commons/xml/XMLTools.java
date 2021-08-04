@@ -176,7 +176,7 @@ public final class XMLTools {
 
 		NodeList nodeList = document.getElementsByTagName(tagName);
 
-		List<Element> allElementsWithTag = new ArrayList<Element>();
+		List<Element> allElementsWithTag = new ArrayList<>();
 		int length = nodeList.getLength();
 		for (int i = 0; i < length; i++) {
 			allElementsWithTag.add((Element) nodeList.item(i));
@@ -195,7 +195,7 @@ public final class XMLTools {
 	 */
 	public static List<Element> getChildElements(Element parentElement, String tagName) {
 
-		List<Element> foundChildElements = new ArrayList<Element>();
+		List<Element> foundChildElements = new ArrayList<>();
 		NodeList childNodes = parentElement.getChildNodes();
 		Node childNode;
 		Element childElement;
@@ -355,14 +355,14 @@ public final class XMLTools {
 	@Deprecated
 	public static Element getUniqueChildElement(Element parentElement, String tagName, boolean required)
 			throws PurpleException {
-		Optional<Element> elementOptional = getUniqueChildElement(parentElement,tagName);		
+		Optional<Element> elementOptional = getUniqueChildElement(parentElement, tagName);
 		if (elementOptional.isEmpty()) {
 			if (required) {
 				throw new PurpleException("No element with tag " + tagName + " found");
 			} else {
 				return null;
 			}
-		} else  {
+		} else {
 			return elementOptional.get();
 		}
 

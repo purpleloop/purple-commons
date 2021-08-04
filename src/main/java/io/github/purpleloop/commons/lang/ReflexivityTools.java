@@ -6,6 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import io.github.purpleloop.commons.exception.PurpleException;
+
 /** Utility class for reflexivity. */
 public final class ReflexivityTools {
 
@@ -24,10 +26,11 @@ public final class ReflexivityTools {
      * @param paramsClasses the classes of the parameters
      * @param paramsValues the values of the parameters
      * @return the newly created instance
+     * @throws PurpleException in case of problem during instance creation
      */
     @SuppressWarnings("unchecked")
     public static <T> T createInstance(String className, Class<?>[] paramsClasses,
-            Object[] paramsValues) {
+            Object[] paramsValues) throws PurpleException {
 
         if (log.isDebugEnabled()) {
             log.debug("Instantiating a class '" + className + "'");
@@ -40,24 +43,24 @@ public final class ReflexivityTools {
 
         try {
             Class<T> requestedClass = (Class<T>) Class.forName(className);
-            Constructor<T> constructor = requestedClass.getConstructor((Class[]) paramsClasses);
+            Constructor<T> constructor = requestedClass.getConstructor(paramsClasses);
             return constructor.newInstance(paramsValues);
 
         } catch (ClassNotFoundException e) {
             log.error("Instantiation failed for class " + className + "  due to a missing class",
                     e);
-            throw new RuntimeException("Missing class while instantiating " + className + ".");
+            throw new PurpleException("Missing class while instantiating " + className + ".");
 
         } catch (NoSuchMethodException e) {
             log.error("There is no constructor for the class " + className
                     + " with the provided arguments types", e);
-            throw new RuntimeException(
+            throw new PurpleException(
                     "No matching constructor found for class " + className + ".");
 
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException e) {
             log.error("Instantiation failed for class " + className, e);
-            throw new RuntimeException("Error while instantiating " + className + ".");
+            throw new PurpleException("Error while instantiating " + className + ".");
         }
 
     }
