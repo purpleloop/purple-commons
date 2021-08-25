@@ -318,14 +318,13 @@ public final class XMLTools {
 	}
 
 	/**
-	 * Get a children element with the requested tag (direct) of the given element.
+	 * Get a unique element with the requested tag that is a direct child of the given element.
 	 * 
 	 * @param parentElement parent element
 	 * @param tagName       tag name of the element to be obtained
 	 * @return optional single children element with this tag
 	 * @throws PurpleException in case of errors
 	 */
-	@Deprecated
 	public static Optional<Element> getUniqueChildElement(Element parentElement, String tagName)
 			throws PurpleException {
 		List<Element> childElements = getChildElements(parentElement, tagName);
