@@ -1,7 +1,7 @@
-package io.github.purpleloop.commons.math;
+package io.github.purpleloop.commons.math.geom;
 
 /** Geometric utilities. */
-public final class GeomUtils {
+public final class GeomUtils {   
 
     /** Private constructor. */
     private GeomUtils() {

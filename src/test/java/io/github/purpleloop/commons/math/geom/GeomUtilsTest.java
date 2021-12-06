@@ -1,4 +1,4 @@
-package io.github.purpleloop.commons.math;
+package io.github.purpleloop.commons.math.geom;
 
 import static org.junit.Assert.assertEquals;
 
