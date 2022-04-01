@@ -47,9 +47,9 @@ public final class ReflexivityTools {
             return constructor.newInstance(paramsValues);
 
         } catch (ClassNotFoundException e) {
-            log.error("Instantiation failed for class " + className + "  due to a missing class",
+            log.error("Instantiation failed, the class '" + className + "' is missing",
                     e);
-            throw new PurpleException("Missing class while instantiating " + className + ".");
+            throw new PurpleException("Missing class '" + className + "' while instantiating.");
 
         } catch (NoSuchMethodException e) {
             log.error("There is no constructor for the class " + className
