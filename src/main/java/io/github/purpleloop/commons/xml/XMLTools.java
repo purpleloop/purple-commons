@@ -118,8 +118,11 @@ public final class XMLTools {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
-		try {
-			return dbf.newDocumentBuilder().parse(xmlIs);
+        try {
+            // Disable external entities declaration to prevent XXE vulnerabilities
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+            return dbf.newDocumentBuilder().parse(xmlIs);
 
 		} catch (ParserConfigurationException e) {
 			LOG.error("XML parser configuration problem : ", e);
@@ -150,6 +153,11 @@ public final class XMLTools {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
 		try {
+		    
+            // Disable external entities declaration to prevent XXE
+            // vulnerabilities
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
 			return dbf.newDocumentBuilder().parse(xmlFile);
 
 		} catch (ParserConfigurationException e) {
@@ -410,6 +418,9 @@ public final class XMLTools {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
 		try {
+            // Disable external entities declaration to prevent XXE vulnerabilities
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+		    
 			return dbf.newDocumentBuilder().newDocument();
 
 		} catch (ParserConfigurationException e) {
