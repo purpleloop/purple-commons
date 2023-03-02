@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -532,7 +533,10 @@ public final class XMLTools {
 			documentSource.setXmlVersion(xmlVersion);
 
 			// Use a Transformer for output
-			TransformerFactory tFactory = TransformerFactory.newInstance();
+            TransformerFactory tFactory = TransformerFactory.newInstance();
+            tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+
 			Transformer transformer = tFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.ENCODING, xmlEncoding);
 
