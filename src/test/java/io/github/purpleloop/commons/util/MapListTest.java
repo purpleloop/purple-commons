@@ -1,17 +1,24 @@
 package io.github.purpleloop.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 /** Tests for MapList. */
-public class MapListTest extends TestCase {
+class MapListTest {
 
     /** Test MapList isEmpty. */
-    public void testEmpty() {
+    @Test
+    void testEmpty() {
 
         MapListImpl<Boolean, String> sentences = new MapListImpl<Boolean, String>();
         assertTrue(sentences.isEmpty());
@@ -30,7 +37,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test key set. */
-    public void testKeySet() {
+    @Test
+    void testKeySet() {
         MapListImpl<Boolean, String> sentences = new MapListImpl<Boolean, String>();
         sentences.putValue(true, "aa");
         sentences.putValue(false, "bb");
@@ -43,7 +51,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test maplist contains. */
-    public void testContains() {
+    @Test
+    void testContains() {
 
         MapListImpl<Boolean, String> sentences = new MapListImpl<Boolean, String>();
         sentences.putValue(true, "aa");
@@ -68,7 +77,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test values for a given key. */
-    public void testValuesForKey() {
+    @Test
+    void testValuesForKey() {
 
         MapListImpl<Boolean, String> sentences = new MapListImpl<Boolean, String>();
 
@@ -91,7 +101,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test clearing map. */
-    public void testClear() {
+    @Test
+    void testClear() {
         MapListImpl<Boolean, String> sentences = new MapListImpl<Boolean, String>();
         sentences.putValue(true, "aa");
         sentences.putValue(false, "bb");
@@ -102,7 +113,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test iterator. */
-    public void testIterator() {
+    @Test
+    void testIterator() {
 
         MapListImpl<Integer, String> sentences = new MapListImpl<Integer, String>();
         sentences.putValue(0, "aa");
@@ -120,7 +132,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test toArray. */
-    public void testToArray() {
+    @Test
+    void testToArray() {
 
         MapListImpl<Integer, String> sentences = new MapListImpl<Integer, String>();
         sentences.putAllValues(0, Arrays.asList("aa", "cc"));
@@ -143,7 +156,8 @@ public class MapListTest extends TestCase {
     }
 
     /** Test remove. */
-    public void testRemoves() {
+    @Test
+    void testRemoves() {
 
         MapListImpl<Integer, String> sentences = new MapListImpl<Integer, String>();
         sentences.putAllValues(0, Arrays.asList("aa", "cc"));
@@ -161,7 +175,7 @@ public class MapListTest extends TestCase {
 
         assertTrue(sentences.containsAll(Arrays.asList("aa", "dd", "ee")));
         assertFalse(sentences.containsAll(Arrays.asList("cc", "ff")));
-        
+
         sentences.removeAll("aa");
         assertFalse(sentences.keySet().contains(0));
         assertEquals(1, sentences.keySize());

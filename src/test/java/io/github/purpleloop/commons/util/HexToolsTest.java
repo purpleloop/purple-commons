@@ -1,9 +1,10 @@
 package io.github.purpleloop.commons.util;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /** Tests for hexadecimal tools. */
 public class HexToolsTest {
@@ -16,7 +17,7 @@ public class HexToolsTest {
 
     /** Tests integer conversion. */
     @Test
-    public void testToHexInt() {
+    void testToHexInt() {
 
         assertEquals("", HexTools.toHex(0, 0));
         assertEquals("", HexTools.toHex(1, 0));
@@ -31,7 +32,7 @@ public class HexToolsTest {
 
     /** Tests long conversion. */
     @Test
-    public void testToHexLong() {
+    void testToHexLong() {
 
         assertEquals("", HexTools.toHex((long) 0, 0));
         assertEquals("", HexTools.toHex((long) 1, 0));
@@ -46,7 +47,7 @@ public class HexToolsTest {
 
     /** Tests hex buffer conversion. */
     @Test
-    public void toHexBuffer() {
+    void toHexBuffer() {
 
         assertEquals("", HexTools.toHex(new byte[0]));
         assertEquals("2B", HexTools.toHex(BUFFER1));
@@ -66,32 +67,44 @@ public class HexToolsTest {
      * Tests hex buffer conversion - Rises an exception because offset is
      * negative.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void toHexBufferOffsetNegative() {
-        HexTools.toHex(BUFFER2, -1, 2);
+    @Test
+    void toHexBufferOffsetNegative() {
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            HexTools.toHex(BUFFER2, -1, 2);
+        });
+
     }
 
     /**
      * Tests hex buffer conversion - Rises an exception because offset is beyond
      * limits of the buffer.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void toHexBufferOffsetOverflow() {
-        HexTools.toHex(BUFFER2, 5, 2);
+    @Test
+    void toHexBufferOffsetOverflow() {
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            HexTools.toHex(BUFFER2, 5, 2);
+        });
+
     }
 
     /**
      * Tests hex buffer conversion - Rises an exception because requested length
      * goes beyond limits of the buffer.
      */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void toHexBufferLengthOverflow() {
-        HexTools.toHex(BUFFER2, 2, 5);
+    @Test
+    void toHexBufferLengthOverflow() {
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            HexTools.toHex(BUFFER2, 2, 5);
+        });
+
     }
 
     /** Tests byte array to hexadecimal string conversion with separators. */
     @Test
-    public void testBufferToHexString() {
+    void testBufferToHexString() {
 
         assertEquals("FF2501", HexTools.bufferToHexString(BUFFER2, null));
         assertEquals("2B", HexTools.bufferToHexString(BUFFER1, null));
@@ -101,7 +114,7 @@ public class HexToolsTest {
 
     /** Tests hexadecimal string to byte array conversion. */
     @Test
-    public void testBufferFromHexString() {
+    void testBufferFromHexString() {
 
         assertArrayEquals(BUFFER2, HexTools.bufferFromHexString("FF2501"));
         assertArrayEquals(BUFFER1, HexTools.bufferFromHexString("2B"));

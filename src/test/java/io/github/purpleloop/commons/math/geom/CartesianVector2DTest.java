@@ -1,42 +1,42 @@
 package io.github.purpleloop.commons.math.geom;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import io.github.purpleloop.commons.math.NumberUtils;
 
 /** Tests on vectors. */
-public class CartesianVector2DTest {
+class CartesianVector2DTest {
 
     /** Test toString. */
     @Test
-    public void testToStringOk() {
+    void testToStringOk() {
         assertEquals("(0.0, 1.0)", new CartesianVector2D(0, 1).toString());
     }
 
     /** Test equals - Ok same. */
     @Test
-    public void testEqualsOkSame() {
+    void testEqualsOkSame() {
         assertEquals(new CartesianVector2D(0, 1), new CartesianVector2D(0, 1));
     }
 
     /** Test equals - Ko different. */
     @Test
-    public void testEqualsKoDifferent() {
+    void testEqualsKoDifferent() {
         assertNotEquals(new CartesianVector2D(0, 1), new CartesianVector2D(1, 0));
     }
 
     /** Test norm - Ok unitary. */
     @Test
-    public void testNormOkUnitary() {
+    void testNormOkUnitary() {
         assertEquals(1.0, new CartesianVector2D(1, 0).getNorm(), NumberUtils.EPSILON);
     }
 
     /** Test norm - Ok sample. */
     @Test
-    public void testNormOkSample() {
+    void testNormOkSample() {
         assertEquals(5.0, new CartesianVector2D(3, 4).getNorm(), NumberUtils.EPSILON);
     }
 
@@ -44,7 +44,7 @@ public class CartesianVector2DTest {
      * Test angle - Ok zero angle.
      */
     @Test
-    public void testAngleOkZero() {
+    void testAngleOkZero() {
         assertEquals(0.0, new CartesianVector2D(1, 0).getAngle(), NumberUtils.EPSILON);
     }
 
@@ -52,7 +52,7 @@ public class CartesianVector2DTest {
      * Test angle - Ok right angle.
      */
     @Test
-    public void testAngleOkRight() {
+    void testAngleOkRight() {
         assertEquals(Math.PI / 2.0, new CartesianVector2D(0, 1).getAngle(), NumberUtils.EPSILON);
     }
 
@@ -60,7 +60,7 @@ public class CartesianVector2DTest {
      * Test angle - Ok flat angle.
      */
     @Test
-    public void testAngleOkFlat() {
+    void testAngleOkFlat() {
         assertEquals(Math.PI, new CartesianVector2D(-1, 0).getAngle(), NumberUtils.EPSILON);
     }
 
@@ -68,7 +68,7 @@ public class CartesianVector2DTest {
      * Test angle - Ok right negative angle.
      */
     @Test
-    public void testAngleOkRightNegative() {
+    void testAngleOkRightNegative() {
         assertEquals(-Math.PI / 2.0, new CartesianVector2D(0, -1).getAngle(), NumberUtils.EPSILON);
     }
 
@@ -76,7 +76,7 @@ public class CartesianVector2DTest {
      * Test angle - Ok sample angle.
      */
     @Test
-    public void testAngleOkSample() {
+    void testAngleOkSample() {
         assertEquals(Math.PI / 6.0, new CartesianVector2D(Math.sqrt(3) / 2, 0.5).getAngle(),
                 NumberUtils.EPSILON);
     }
@@ -86,7 +86,7 @@ public class CartesianVector2DTest {
      * 
      */
     @Test
-    public void testAngleKoZero() {
+    void testAngleKoZero() {
         assertEquals(0.0, new CartesianVector2D(0, 0).getAngle(), NumberUtils.EPSILON);
     }
 
@@ -94,7 +94,7 @@ public class CartesianVector2DTest {
      * Test scale - Ok sample.
      */
     @Test
-    public void testScaleOkSample() {
+    void testScaleOkSample() {
         assertEquals(new CartesianVector2D(7.5, 12.5), new CartesianVector2D(3, 5).scale(2.5));
     }
 
@@ -102,7 +102,7 @@ public class CartesianVector2DTest {
      * Test rotate - Ok sample negative right rotated right angle.
      */
     @Test
-    public void testRotateOkSampleNegativeRightRotRight() {
+    void testRotateOkSampleNegativeRightRotRight() {
         assertEquals(new CartesianVector2D(1, 0), new CartesianVector2D(0, -1).rotate(Math.PI / 2));
     }
 
@@ -110,7 +110,7 @@ public class CartesianVector2DTest {
      * Test rotate - Ok sample pi/6 rotated right angle.
      */
     @Test
-    public void testRotateOkSamplePiSixthRotRight() {
+    void testRotateOkSamplePiSixthRotRight() {
         assertEquals(new CartesianVector2D(-0.5, Math.sqrt(3) / 2),
                 new CartesianVector2D(Math.sqrt(3) / 2, 0.5).rotate(Math.PI / 2));
     }
@@ -119,7 +119,7 @@ public class CartesianVector2DTest {
      * Test add - Ok sample.
      */
     @Test
-    public void testAddOkSample() {
+    void testAddOkSample() {
         assertEquals(new CartesianVector2D(7, 9),
                 new CartesianVector2D(2, 3).add(new CartesianVector2D(5, 6)));
     }
@@ -128,7 +128,7 @@ public class CartesianVector2DTest {
      * Test distance - Ok zero.
      */
     @Test
-    public void testDistanceOkZero() {
+    void testDistanceOkZero() {
         assertEquals(0.0, new CartesianVector2D(1, 0).distance(new CartesianVector2D(1, 0)),
                 NumberUtils.EPSILON);
     }
@@ -137,7 +137,7 @@ public class CartesianVector2DTest {
      * Test distance - Ok sample.
      */
     @Test
-    public void testDistanceOkSample() {
+    void testDistanceOkSample() {
         assertEquals(Math.sqrt(2),
                 new CartesianVector2D(1, 0).distance(new CartesianVector2D(0, 1)),
                 NumberUtils.EPSILON);
@@ -147,7 +147,7 @@ public class CartesianVector2DTest {
      * Test scale - Ok sample.
      */
     @Test
-    public void testScaledOkSample() {
+    void testScaledOkSample() {
         assertEquals(new CartesianVector2D(7.5, 12.5),
                 CartesianVector2D.createScaledVector(new CartesianVector2D(3, 5), 2.5));
     }
@@ -156,7 +156,7 @@ public class CartesianVector2DTest {
      * Test rotated - Ok sample negative right rotated right angle.
      */
     @Test
-    public void testRotatedOkSampleNegativeRightRotRight() {
+    void testRotatedOkSampleNegativeRightRotRight() {
         assertEquals(new CartesianVector2D(1, 0),
                 CartesianVector2D.createRotatedVector(new CartesianVector2D(0, -1), Math.PI / 2));
     }
@@ -165,7 +165,7 @@ public class CartesianVector2DTest {
      * Test rotated - Ok sample pi/6 rotated right angle.
      */
     @Test
-    public void testRotatedOkSamplePiSixthRotRight() {
+    void testRotatedOkSamplePiSixthRotRight() {
         assertEquals(new CartesianVector2D(-0.5, Math.sqrt(3) / 2), CartesianVector2D
                 .createRotatedVector(new CartesianVector2D(Math.sqrt(3) / 2, 0.5), Math.PI / 2));
     }

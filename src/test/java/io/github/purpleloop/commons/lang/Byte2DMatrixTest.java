@@ -1,18 +1,18 @@
 package io.github.purpleloop.commons.lang;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /** Tests for the 2D byte array. */
-public class Byte2DMatrixTest {
+class Byte2DMatrixTest {
 
 	/** Sample data. */
     public static final byte[][] DATA = { { 45, 98 }, { 72, 34 }, { 19, 48 } };
 
     /** Tests that the array is initialized with zeroes. */
     @Test
-    public void testGetDefault() {
+    void testGetDefault() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(2, 2);
         assertEquals(0, matrix.get(0, 0));
@@ -23,7 +23,7 @@ public class Byte2DMatrixTest {
 
     /** Tests put ant get. */
     @Test
-    public void testGetPut() {
+    void testGetPut() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(2, 2);
         matrix.put(1, 0, (byte) 25);
@@ -36,7 +36,7 @@ public class Byte2DMatrixTest {
 
     /** Tests the filling. */
     @Test
-    public void testFill() {
+    void testFill() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(3, 2, DATA);
 
@@ -50,7 +50,7 @@ public class Byte2DMatrixTest {
 
     /** Test of and operator. */
     @Test
-    public void testAnd() {
+    void testAnd() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(1, 1);
         matrix.put(0, 0, (byte) 15);
@@ -69,7 +69,7 @@ public class Byte2DMatrixTest {
 
     /** Test of or operator. */
     @Test
-    public void testOr() {
+    void testOr() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(1, 1);
         matrix.put(0, 0, (byte) 0);
@@ -88,7 +88,7 @@ public class Byte2DMatrixTest {
 
     /** Tests of the hexadecimal dump. */
     @Test
-    public void testHexDump() {
+    void testHexDump() {
 
         Byte2DMatrix matrix = new Byte2DMatrix(3, 2, DATA);
 

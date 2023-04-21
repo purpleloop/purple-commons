@@ -1,19 +1,18 @@
 package io.github.purpleloop.commons.directions;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import io.github.purpleloop.commons.direction.Direction;
 import io.github.purpleloop.commons.direction.Direction4;
 
 /** Unit tests for Direction4. */
-public class Direction4Test {
+class Direction4Test {
 
     @Test
-    public void testNext() {
+    void testNext() {
 
         assertEquals(Direction4.WEST, Direction4.NORTH.next(true));
         assertEquals(Direction4.SOUTH, Direction4.WEST.next(true));
@@ -40,7 +39,7 @@ public class Direction4Test {
     }
 
     @Test
-    public void testValues() {
+    void testValues() {
 
         List<Direction> dirs = Direction4.values();
 
@@ -53,7 +52,7 @@ public class Direction4Test {
     }
 
     @Test
-    public void testAngles() {
+    void testAngles() {
         assertEquals(0.0, Direction4.EAST.getAngle(), 0.001);
         assertEquals(Math.PI / 2.0, Direction4.NORTH.getAngle(), 0.001);
         assertEquals(Math.PI, Direction4.WEST.getAngle(), 0.001);

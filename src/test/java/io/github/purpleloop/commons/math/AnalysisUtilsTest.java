@@ -1,51 +1,54 @@
 package io.github.purpleloop.commons.math;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /** Tests cases for analysis utilities. */
-public class AnalysisUtilsTest {
+class AnalysisUtilsTest {
 
     /** Tests the case maximal is lower than minimal. */
-    @Test(expected = IllegalArgumentException.class)
-    public void boundMaxLowerMin() {
-        AnalysisUtils.bound(0, 1, 0);
+    @Test
+    void boundMaxLowerMin() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            AnalysisUtils.bound(0, 1, 0);
+        });
     }
 
     /** Tests the case value equals to both bounds. */
     @Test
-    public void boundValueBothBounds() {
+    void boundValueBothBounds() {
         assertEquals(20, AnalysisUtils.bound(20, 20, 20));
     }
 
     /** Tests the case value is between bounds. */
     @Test
-    public void boundValueInBounds() {
+    void boundValueInBounds() {
         assertEquals(20, AnalysisUtils.bound(20, 10, 30));
     }
 
     /** Tests the case value is equals to minimal. */
     @Test
-    public void boundValueMinimal() {
+    void boundValueMinimal() {
         assertEquals(20, AnalysisUtils.bound(20, 20, 30));
     }
 
     /** Tests the case value is equals to maximal. */
     @Test
-    public void boundValueMaximal() {
+    void boundValueMaximal() {
         assertEquals(30, AnalysisUtils.bound(30, 20, 30));
     }
 
     /** Tests the case value is lower. */
     @Test
-    public void boundValueLower() {
+    void boundValueLower() {
         assertEquals(20, AnalysisUtils.bound(10, 20, 30));
     }
 
     /** Tests the case value is higher. */
     @Test
-    public void boundValueHigher() {
+    void boundValueHigher() {
         assertEquals(20, AnalysisUtils.bound(30, 10, 20));
     }
 

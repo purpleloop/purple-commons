@@ -1,10 +1,11 @@
 package io.github.purpleloop.commons.xml;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -21,7 +22,7 @@ import org.w3c.dom.Text;
 import io.github.purpleloop.commons.exception.PurpleException;
 
 /** Tests cases for XML utilities. */
-public class XMLToolsTest {
+class XMLToolsTest {
 
     /**
      * Test the reading of a document from a null stream.
@@ -29,7 +30,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of error
      */
     @Test
-    public void getDocumentNullStreamTest() throws PurpleException {
+    void getDocumentNullStreamTest() throws PurpleException {
         Document doc = XMLTools.getDocument((InputStream) null);
         assertNull(doc);
     }
@@ -41,7 +42,7 @@ public class XMLToolsTest {
      * @throws UnsupportedEncodingException
      */
     @Test
-    public void getDocumentTest() throws PurpleException, UnsupportedEncodingException {
+    void getDocumentTest() throws PurpleException, UnsupportedEncodingException {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root />";
         Document doc = XMLTools.getDocument(new ByteArrayInputStream(xml.getBytes("UTF-8")));
         assertEquals("root", doc.getDocumentElement().getTagName());
@@ -53,7 +54,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getAllElementsFromDocumentTest() throws PurpleException {
+    void getAllElementsFromDocumentTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         List<Element> childElements = XMLTools.getElementsByTagName(animalDoc, "cat");
         assertEquals(3, childElements.size());
@@ -68,7 +69,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getChildrenCatElementsTest() throws PurpleException {
+    void getChildrenCatElementsTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         List<Element> childElements = XMLTools.getChildElements(animalDoc.getDocumentElement(),
                 "cat");
@@ -82,7 +83,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getAllChildrenElementsTest() throws PurpleException {
+    void getAllChildrenElementsTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         List<Element> childElements = XMLTools.getChildElements(animalDoc.getDocumentElement());
         assertEquals(4, childElements.size());
@@ -98,7 +99,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getStreamingAllChildrenElementsTest() throws PurpleException {
+    void getStreamingAllChildrenElementsTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         Stream<Element> childElements = XMLTools
                 .getChildElementsStream(animalDoc.getDocumentElement());
@@ -111,7 +112,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getUniqueElementTest() throws PurpleException {
+    void getUniqueElementTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         Element lonelySnailElement = XMLTools.getUniqueElement(animalDoc.getDocumentElement(),
                 "snail", true);
@@ -124,10 +125,14 @@ public class XMLToolsTest {
      * 
      * @throws PurpleException in case of errors
      */
-    @Test(expected = PurpleException.class)
-    public void getUniqueElementMissingMandatoryTest() throws PurpleException {
+    @Test
+    void getUniqueElementMissingMandatoryTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
-        XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "platypus", true);
+
+        assertThrows(PurpleException.class, () -> {
+            XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "platypus", true);
+        });
+
     }
 
     /**
@@ -136,7 +141,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getUniqueElementMissingNullTest() throws PurpleException {
+    void getUniqueElementMissingNullTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         assertNull(XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "platypus", false));
 
@@ -149,10 +154,14 @@ public class XMLToolsTest {
      * 
      * @throws PurpleException in case of errors
      */
-    @Test(expected = PurpleException.class)
-    public void getUniqueElementTooManyNullTest() throws PurpleException {
+    @Test
+    void getUniqueElementTooManyNullTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
-        XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "cat", false);
+
+        assertThrows(PurpleException.class, () -> {
+            XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "cat", false);
+        });
+
     }
 
     /**
@@ -161,7 +170,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getUniqueChildElementTest() throws PurpleException {
+    void getUniqueChildElementTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         Element lonelyogElement = XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(),
                 "dog", true);
@@ -174,10 +183,14 @@ public class XMLToolsTest {
      * 
      * @throws PurpleException in case of errors
      */
-    @Test(expected = PurpleException.class)
-    public void getUniqueChildElementMissingMandatoryTest() throws PurpleException {
+    @Test
+    void getUniqueChildElementMissingMandatoryTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
-        XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "platypus", true);
+
+        assertThrows(PurpleException.class, () -> {
+            XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "platypus", true);
+        });
+
     }
 
     /**
@@ -186,7 +199,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getUniqueChildElementMissingNullTest() throws PurpleException {
+    void getUniqueChildElementMissingNullTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         assertNull(
                 XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "platypus", false));
@@ -201,10 +214,13 @@ public class XMLToolsTest {
      * 
      * @throws PurpleException in case of errors
      */
-    @Test(expected = PurpleException.class)
-    public void getUniqueChildElementTooManyNullTest() throws PurpleException {
+    @Test
+    void getUniqueChildElementTooManyNullTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
-        XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "cat", false);
+
+        assertThrows(PurpleException.class, () -> {
+            XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "cat", false);
+        });
     }
 
     /**
@@ -213,7 +229,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void isTextLeafTrueTest() throws PurpleException {
+    void isTextLeafTrueTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         assertTrue(XMLTools.hasTextContents(
                 XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "snail", true)));
@@ -225,7 +241,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void hasTextContentsFalseTest() throws PurpleException {
+    void hasTextContentsFalseTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
         assertFalse(XMLTools.hasTextContents(
                 XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "dog", true)));
@@ -237,7 +253,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getIntegerAttributeValueExistsTest() throws PurpleException {
+    void getIntegerAttributeValueExistsTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
 
         Element dogElement = XMLTools.getUniqueChildElement(animalDoc.getDocumentElement(), "dog",
@@ -252,7 +268,7 @@ public class XMLToolsTest {
      * @throws PurpleException in case of errors
      */
     @Test
-    public void getIntegerAttributeValueMissingTest() throws PurpleException {
+    void getIntegerAttributeValueMissingTest() throws PurpleException {
         Document animalDoc = getSampleAnimalsDocument();
 
         Element snailElement = XMLTools.getUniqueElement(animalDoc.getDocumentElement(), "snail",
@@ -268,7 +284,7 @@ public class XMLToolsTest {
      * @throws UnsupportedEncodingException in case of errors
      */
     @Test
-    public void writeDocumentTest() throws PurpleException, UnsupportedEncodingException {
+    void writeDocumentTest() throws PurpleException, UnsupportedEncodingException {
         Document animalDoc = getSampleAnimalsDocument();
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
