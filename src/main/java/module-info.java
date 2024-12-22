@@ -9,6 +9,6 @@ module io.github.purpleloop.commons {
     exports io.github.purpleloop.commons.util;
     exports io.github.purpleloop.commons.xml;
 
-    requires commons.logging;
+    requires org.apache.commons.logging;
     requires transitive java.xml;
 }
