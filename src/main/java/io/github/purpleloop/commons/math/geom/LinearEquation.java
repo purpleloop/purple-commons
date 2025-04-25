@@ -32,7 +32,7 @@ public record LinearEquation(double a, double b, double c) {
      * @param eps precision
      * @return true if the point is close enough of the line
      */
-    boolean isOnTheline(double x, double y, double eps) {
+    public boolean isOnTheline(double x, double y, double eps) {
 
         double value = computesValueForPoint(x, y);
         return Math.abs(value) < eps;
