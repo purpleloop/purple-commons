@@ -569,6 +569,7 @@ public final class XMLTools {
 
             // Use a Transformer for output
             TransformerFactory tFactory = TransformerFactory.newInstance();
+            tFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             tFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 
@@ -595,5 +596,5 @@ public final class XMLTools {
         }
 
     }
-
+    
 }
