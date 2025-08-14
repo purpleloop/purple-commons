@@ -63,4 +63,36 @@ public record LinearEquation(double a, double b, double c) {
         return Optional.of(new LinearEquation(a, b, c));
     }
 
+    /**
+     * Determines the linear equation for the perpendicular bisector of a segment AB given by
+     * its's coordinates.
+     * 
+     * @param x1 abscissa of the first point A
+     * @param y1 ordinate of the first point A
+     * @param x2 abscissa of the second point B
+     * @param y2 ordinate of the second point B
+     * 
+     * @return an optional linear equation if the equation exists
+     */
+    public static Optional<LinearEquation> bisectorForSegment(double x1, double y1, double x2,
+            double y2) {
+
+        // Middle point I for the segment AB
+        double xi = (x1 + x2) / 2.0;
+        double yi = (y1 + y2) / 2.0;
+
+        // Vector components for segment AB
+        double abx = x2 - x1;
+        double aby = y2 - y1;
+
+        // AB is a vector normal of the perpendicular bisector
+        double a = abx;
+        double b = aby;
+        
+        // Perpendicular bisector contains point I
+        double c = -(b * yi + a * xi);
+
+        return Optional.of(new LinearEquation(a, b, c));
+    }
+
 }
