@@ -106,4 +106,56 @@ public record CartesianLineEquation(double a, double b, double c) {
         return Optional.of(new CartesianLineEquation(a, b, c));
     }
 
+    /**
+     * Computes the intersection of two lines given by their Cartesian
+     * equations.
+     * 
+     * @param d1 first line
+     * @param d2 second line
+     * @return the optional intersection point if it exists
+     */
+    public static Optional<Point2D> intersection(CartesianLineEquation d1,
+            CartesianLineEquation d2) {
+
+        double a1 = d1.a;
+        double a2 = d2.a;
+        double b1 = d1.b;
+        double b2 = d2.b;
+        double c1 = d1.c;
+        double c2 = d2.c;
+
+        // One must solve the equation system :
+        // a1.x + b1.y = -c1
+        // a2.x + b2.y = -c2
+
+        double determinant = a1 * b2 - a2 * b1;
+        if (determinant == 0) {
+            // No solution exists to the system, intersection of lines does not
+            // exist
+            return Optional.empty();
+
+        } else {
+
+            // General case, a solution exists.
+            double y = (a1 * c2 - a2 * c1) / (-determinant);
+
+            if (a1 != 0) {
+
+                // From the first equation
+                double x = (-b1 * y - c1) / a1;
+                return Optional.of(new Point2D(x, y));
+
+            } else {
+
+                // We can't substitute in the first equation but,
+                // a2 can't be nul since the determinant is not nul.
+                // From the second equation
+                double x = (-b2 * y - c2) / a2;
+                return Optional.of(new Point2D(x, y));
+            }
+
+        }
+
+    }
+
 }
