@@ -130,4 +130,48 @@ class CartesianLineEquationTest {
         assertTrue(solution.isEmpty());
     }
 
+    @Test
+    void testIntersectionFirstBissectriceSegmentSinglePoint() {
+
+        CartesianLineEquation line = new CartesianLineEquation(-1, 1, 0);
+
+        Point2D a = new Point2D(0, 2);
+        Point2D b = new Point2D(2, 0);
+        Segment2D segment = new Segment2D(a, b);
+
+        Optional<Point2D> solution = CartesianLineEquation.intersection(line, segment);
+
+        assertTrue(solution.isPresent());
+        Point2D point = solution.get();
+        assertEquals(1.0, point.x(), 0.001);
+        assertEquals(1.0, point.y(), 0.001);
+    }
+
+    @Test
+    void testIntersectionOutsideSegment() {
+
+        CartesianLineEquation line = new CartesianLineEquation(1, 0, 1);
+
+        Point2D a = new Point2D(0, 2);
+        Point2D b = new Point2D(2, 0);
+        Segment2D segment = new Segment2D(a, b);
+
+        Optional<Point2D> solution = CartesianLineEquation.intersection(line, segment);
+
+        assertTrue(solution.isEmpty());
+    }
+
+    @Test
+    void testIntersectionLineParellelToSegment() {
+
+        CartesianLineEquation line = new CartesianLineEquation(-1, 1, 0);
+
+        Point2D a = new Point2D(0, 2);
+        Point2D b = new Point2D(1, 3);
+        Segment2D segment = new Segment2D(a, b);
+
+        Optional<Point2D> solution = CartesianLineEquation.intersection(line, segment);
+
+        assertTrue(solution.isEmpty());
+    }
 }

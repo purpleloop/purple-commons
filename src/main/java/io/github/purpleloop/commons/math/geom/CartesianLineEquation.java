@@ -75,6 +75,29 @@ public record CartesianLineEquation(double a, double b, double c) {
     }
 
     /**
+     * Computes the equation parameters for two points.
+     * 
+     * @param a the first point
+     * @param b the second point
+     * 
+     * @return an optional Cartesian equation of the line if it exists
+     */
+    public static Optional<CartesianLineEquation> fromPoints(Point2D a, Point2D b) {
+        return fromPoints(a.x(), a.y(), b.x(), b.y());
+    }
+
+    /**
+     * Computes the equation parameters for a line segment.
+     * 
+     * @param segment the line segment
+     * 
+     * @return an optional Cartesian equation of the line if it exists
+     */
+    public static Optional<CartesianLineEquation> fromSegment(Segment2D segment) {
+        return fromPoints(segment.p1(), segment.p2());
+    }
+
+    /**
      * Determines the Cartesian equation of the perpendicular bisector of a
      * segment AB given by its's coordinates.
      * 
@@ -156,6 +179,41 @@ public record CartesianLineEquation(double a, double b, double c) {
 
         }
 
+    }
+
+    /**
+     * Computes the intersection of a line given by it's Cartesian equations and
+     * a segment.
+     * 
+     * @param line line
+     * @param segment the segment
+     * @return the optional intersection point if it exists
+     */
+    public static Optional<Point2D> intersection(CartesianLineEquation line, Segment2D segment) {
+
+        Optional<CartesianLineEquation> lineForSegmentOpt = CartesianLineEquation
+                .fromSegment(segment);
+
+        if (lineForSegmentOpt.isEmpty()) {
+            return Optional.empty();
+        }
+
+        CartesianLineEquation lineForSegment = lineForSegmentOpt.get();
+
+        Optional<Point2D> intersectionPointOpt = CartesianLineEquation.intersection(line,
+                lineForSegment);
+
+        if (intersectionPointOpt.isEmpty()) {
+            return intersectionPointOpt;
+        }
+
+        Point2D candidatePoint = intersectionPointOpt.get();
+
+        if (segment.contains(candidatePoint)) {
+            return Optional.of(candidatePoint);
+        }
+
+        return Optional.empty();
     }
 
 }
