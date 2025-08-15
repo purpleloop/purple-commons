@@ -3,13 +3,23 @@ package io.github.purpleloop.commons.math.geom;
 import java.util.Optional;
 
 /**
- * Models a linear equation <em>a.x + b.y + c = 0</em>.
+ * Models a Cartesian equation of a line <em>a.x + b.y + c = 0</em>.
  * 
  * @param a a parameter of the equation
  * @param b b parameter of the equation
  * @param c c parameter of the equation
  */
-public record LinearEquation(double a, double b, double c) {
+public record CartesianLineEquation(double a, double b, double c) {
+
+    /** @return a direction vector of the line */
+    public CartesianVector2D getDirectionVector() {
+        return new CartesianVector2D(-b, a);
+    }
+
+    /** @return a normal vector of the line */
+    public CartesianVector2D getNormalVector() {
+        return new CartesianVector2D(a, b);
+    }
 
     /**
      * Compute the equation value that must return zero if the given point is on
@@ -46,9 +56,10 @@ public record LinearEquation(double a, double b, double c) {
      * @param x2 abscissa of the second point
      * @param y2 ordinate of the second point
      * 
-     * @return an optional linear equation if the equation exists
+     * @return an optional Cartesian equation of the line if it exists
      */
-    public static Optional<LinearEquation> fromPoints(double x1, double y1, double x2, double y2) {
+    public static Optional<CartesianLineEquation> fromPoints(double x1, double y1, double x2,
+            double y2) {
 
         if ((x1 == x2) && (y1 == y2)) {
 
@@ -60,22 +71,22 @@ public record LinearEquation(double a, double b, double c) {
         double b = x1 - x2;
         double c = -(b * y1 + a * x1);
 
-        return Optional.of(new LinearEquation(a, b, c));
+        return Optional.of(new CartesianLineEquation(a, b, c));
     }
 
     /**
-     * Determines the linear equation for the perpendicular bisector of a segment AB given by
-     * its's coordinates.
+     * Determines the Cartesian equation of the perpendicular bisector of a
+     * segment AB given by its's coordinates.
      * 
      * @param x1 abscissa of the first point A
      * @param y1 ordinate of the first point A
      * @param x2 abscissa of the second point B
      * @param y2 ordinate of the second point B
      * 
-     * @return an optional linear equation if the equation exists
+     * @return an optional Cartesian equation of the line if the equation exists
      */
-    public static Optional<LinearEquation> bisectorForSegment(double x1, double y1, double x2,
-            double y2) {
+    public static Optional<CartesianLineEquation> bisectorForSegment(double x1, double y1,
+            double x2, double y2) {
 
         // Middle point I for the segment AB
         double xi = (x1 + x2) / 2.0;
@@ -88,11 +99,11 @@ public record LinearEquation(double a, double b, double c) {
         // AB is a vector normal of the perpendicular bisector
         double a = abx;
         double b = aby;
-        
+
         // Perpendicular bisector contains point I
         double c = -(b * yi + a * xi);
 
-        return Optional.of(new LinearEquation(a, b, c));
+        return Optional.of(new CartesianLineEquation(a, b, c));
     }
 
 }
