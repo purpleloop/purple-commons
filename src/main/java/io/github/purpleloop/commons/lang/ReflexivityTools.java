@@ -47,15 +47,34 @@ public final class ReflexivityTools {
             return constructor.newInstance(paramsValues);
 
         } catch (ClassNotFoundException e) {
-            log.error("Instantiation failed, the class '" + className + "' is missing",
-                    e);
+            log.error("Instantiation failed, the class '" + className + "' is missing", e);
             throw new PurpleException("Missing class '" + className + "' while instantiating.");
 
         } catch (NoSuchMethodException e) {
+
+            StringBuilder sb = new StringBuilder();
+
+            if (paramsClasses.length > 0) {
+
+                sb.append("Expected parameters : ");
+
+                boolean separator = false;
+
+                for (int i = 0; i < paramsClasses.length; i++) {
+
+                    if (separator) {
+                        sb.append(", ");
+                    } else {
+                        separator = true;
+                    }
+
+                    sb.append(paramsClasses[i].getCanonicalName());
+                }
+            }
+
             log.error("There is no constructor for the class " + className
-                    + " with the provided arguments types", e);
-            throw new PurpleException(
-                    "No matching constructor found for class " + className + ".");
+                    + " with the provided arguments types. " + sb.toString(), e);
+            throw new PurpleException("No matching constructor found for class " + className + ".");
 
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException e) {
