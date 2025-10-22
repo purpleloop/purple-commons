@@ -94,6 +94,6 @@ public class Direction {
     /** @return Angle in radians */
     public double getAngle() {
         return 0;
-    };
+    }
 
 }

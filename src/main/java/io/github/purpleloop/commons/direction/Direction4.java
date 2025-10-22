@@ -26,7 +26,7 @@ public final class Direction4 extends EnumeratedDirection {
     private static ArrayList<Direction> values;
 
     static {
-        values = new ArrayList<Direction>();
+        values = new ArrayList<>();
         addValue(EAST);
         addValue(NORTH);
         addValue(WEST);

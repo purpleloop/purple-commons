@@ -38,7 +38,7 @@ public final class Direction8 extends EnumeratedDirection {
     private static ArrayList<Direction> values;
 
     static {
-        values = new ArrayList<Direction>();
+        values = new ArrayList<>();
         addValue(EAST);
         addValue(NORTH_EAST);
         addValue(NORTH);

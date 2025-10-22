@@ -21,7 +21,7 @@ public class Direction360 extends EnumeratedDirection {
 
     static {
 
-        values = new ArrayList<Direction>();
+        values = new ArrayList<>();
         DIR = new double[DEGREES_IN_CIRCLE][2];
 
         for (int value = 0; value < DEGREES_IN_CIRCLE; value++) {
