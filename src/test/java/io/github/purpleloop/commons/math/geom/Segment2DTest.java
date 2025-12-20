@@ -19,6 +19,16 @@ class Segment2DTest {
     }
     
     @Test
+    void generalSegmentContainsPointOnIt() {
+        Point2D a = new Point2D(1, 3);
+        Point2D b = new Point2D(5, 5);
+        Segment2D segment = new Segment2D(a, b);
+
+        Point2D m = new Point2D(4, 4.5);
+        assertTrue(segment.contains(m));
+    }    
+    
+    @Test
     void verticalSegmentContainsPointOnIt() {
         Point2D a = new Point2D(4, -1);
         Point2D b = new Point2D(4, 2);
@@ -39,14 +49,34 @@ class Segment2DTest {
     }
 
     @Test
-    void segmentDoesNotContainanyPointOnItsLineOutside() {
-        Point2D a = new Point2D(0, 1);
-        Point2D b = new Point2D(1, 2);
+    void generalSegmentDoesNoContainPointCloseToIt() {
+        Point2D a = new Point2D(1, 3);
+        Point2D b = new Point2D(5, 5);
         Segment2D segment = new Segment2D(a, b);
 
-        Point2D m = new Point2D(2, 3);
+        Point2D m = new Point2D(4, 4);
+        assertFalse(segment.contains(m));
+    }  
+    
+    @Test
+    void segmentDoesNotContainanPointOnItsLineOutside() {
+        Point2D a = new Point2D(2, 6);
+        Point2D b = new Point2D(8, 4);
+        Segment2D segment = new Segment2D(a, b);
+
+        Point2D m = new Point2D(-1, 7);
         assertFalse(segment.contains(m));
     }
+    
+    @Test
+    void segmentDoesNotContainanPointOnItsLineOutside2() {
+        Point2D a = new Point2D(2, 6);
+        Point2D b = new Point2D(8, 4);
+        Segment2D segment = new Segment2D(a, b);
+        
+        Point2D m2 = new Point2D(11, 3);
+        assertFalse(segment.contains(m2));        
+    }    
     
     @Test
     void singlePointSegmentContainsItself() {
