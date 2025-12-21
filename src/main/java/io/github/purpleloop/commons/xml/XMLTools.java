@@ -117,13 +117,8 @@ public final class XMLTools {
             return null;
         }
 
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
         try {
-            // Disable external entities declaration to prevent XXE
-            // vulnerabilities
-            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-
+            DocumentBuilderFactory dbf = getDocumentBuilderFactory();
             return dbf.newDocumentBuilder().parse(xmlIs);
 
         } catch (ParserConfigurationException e) {
@@ -139,6 +134,22 @@ public final class XMLTools {
 
     }
 
+    /** @return a secured document builder factory */
+    private static DocumentBuilderFactory getDocumentBuilderFactory()
+            throws ParserConfigurationException {
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        // Disable external entities declaration to prevent XXE vulnerabilities
+        dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+
+        dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        dbf.setXIncludeAware(false);
+        dbf.setExpandEntityReferences(false);
+
+        return dbf;
+    }
+
     /**
      * Parses an XML file returns the document.
      * 
@@ -152,14 +163,8 @@ public final class XMLTools {
             return null;
         }
 
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
         try {
-
-            // Disable external entities declaration to prevent XXE
-            // vulnerabilities
-            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-
+            DocumentBuilderFactory dbf = getDocumentBuilderFactory();
             return dbf.newDocumentBuilder().parse(xmlFile);
 
         } catch (ParserConfigurationException e) {
@@ -425,12 +430,9 @@ public final class XMLTools {
      * @throws PurpleException in case of problem
      */
     public static Document createDocument() throws PurpleException {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         try {
-            // Disable external entities declaration to prevent XXE
-            // vulnerabilities
-            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            DocumentBuilderFactory dbf = getDocumentBuilderFactory();
 
             return dbf.newDocumentBuilder().newDocument();
 

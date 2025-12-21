@@ -1,6 +1,7 @@
 package io.github.purpleloop.commons.direction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,7 +58,7 @@ public class Direction360 extends EnumeratedDirection {
      * @return lists or all directions for this coordination
      */
     public static List<Direction> values() {
-        return values;
+        return Collections.unmodifiableList(values);
     }
     
     /**
