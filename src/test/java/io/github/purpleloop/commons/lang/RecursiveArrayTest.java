@@ -1,6 +1,7 @@
 package io.github.purpleloop.commons.lang;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,30 @@ import org.junit.jupiter.api.Test;
 
 /** Tests on the RecursiveArray class. */
 class RecursiveArrayTest {
+
+    /** Tests an invalid negative index. */
+    @Test
+    void testSetInvalidNegative() {
+        List<Integer> dimensions = Arrays.asList(new Integer[] { 2, 3, 4 });
+        List<Integer> coordinates = Arrays.asList(new Integer[] { 1, -1, 0 });
+        RecursiveArray recArray = new RecursiveArray(dimensions);
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            recArray.setDouble(0, coordinates);
+        });
+    }
+
+    /** Tests an invalid too high index. */
+    @Test
+    void testSetInvalidTooHigh() {
+        List<Integer> dimensions = Arrays.asList(new Integer[] { 2, 3, 4 });
+        List<Integer> coordinates = Arrays.asList(new Integer[] { 1, 8, 0 });
+        RecursiveArray recArray = new RecursiveArray(dimensions);
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            recArray.setDouble(0, coordinates);
+        });
+    }
 
     /** Tests the storage and retrieval of integers in a 2 x 3 x 4 array. */
     @Test

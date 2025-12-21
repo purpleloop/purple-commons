@@ -70,7 +70,7 @@ public class RecursiveArray {
      * @throws ArrayIndexOutOfBoundsException if index is invalid
      */
     private void checkBounds(int index) {
-        if (index < 0 && index >= size) {
+        if (index < 0 || index >= size) {
 
             StringBuilder sbError = new StringBuilder();
             sbError.append("Access error : ");
