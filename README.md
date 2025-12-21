@@ -8,7 +8,7 @@ I re-engineered them to make them more generic and more usable.
 
 # Description of the packages
 
-* direction : a package dedicated do directions in a 2D space with various coordinences (4, 8, 360).
+* direction : a package dedicated do directions in a 2D space with various coordination (4, 8, 360).
 * exception : exception classes used in the library
 * lang : utilities for the Java language itself
 * math : some mathematical tools

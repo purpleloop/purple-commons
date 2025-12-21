@@ -1,6 +1,7 @@
 package io.github.purpleloop.commons.lang;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** A class with useful stuffs for random things. */
 public final class Randoms {
@@ -9,16 +10,9 @@ public final class Randoms {
     private Randoms() {
     }
 
-    /** Random singleton. */
-    private static Random rnd;
-
     /** @return random singleton */
-    public static synchronized Random getRandom() {
-        if (rnd == null) {
-            rnd = new Random();
-        }
-
-        return rnd;
+    public static Random getRandom() {
+        return ThreadLocalRandom.current();
     }
 
     /**

@@ -54,7 +54,7 @@ public class Direction360 extends EnumeratedDirection {
     /**
      * List of all possible directions.
      * 
-     * @return lists or all directions for this coordinence
+     * @return lists or all directions for this coordination
      */
     public static List<Direction> values() {
         return values;
@@ -118,7 +118,7 @@ public class Direction360 extends EnumeratedDirection {
     }
 
     /**
-     * Downgrades the precision to obtain a coordinence 8 direction.
+     * Downgrades the precision to obtain a coordination 8 direction.
      * 
      * @return direction downgraded to Direction8
      */
@@ -127,7 +127,7 @@ public class Direction360 extends EnumeratedDirection {
     }
 
     /**
-     * Downgrades the precision to obtain a coordinence 4 direction.
+     * Downgrades the precision to obtain a coordination 4 direction.
      * 
      * @return direction downgraded to Direction8
      */

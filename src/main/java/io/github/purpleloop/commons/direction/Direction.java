@@ -4,7 +4,7 @@ package io.github.purpleloop.commons.direction;
  * Base class to models a direction in a 2D space.
  * 
  * This class, in itself is just a base to sub-class for defining directions in
- * various coordinences.
+ * various coordinations.
  */
 public class Direction {
 

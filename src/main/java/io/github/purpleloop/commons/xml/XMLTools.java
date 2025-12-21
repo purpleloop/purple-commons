@@ -128,13 +128,13 @@ public final class XMLTools {
 
         } catch (ParserConfigurationException e) {
             LOG.error("XML parser configuration problem : ", e);
-            throw new PurpleException("An error occured while configuring the XML parser.", e);
+            throw new PurpleException("An error occurred while configuring the XML parser.", e);
         } catch (SAXException e) {
             LOG.error("XML syntax problem : ", e);
-            throw new PurpleException("An error occured while parsing the XML document.", e);
+            throw new PurpleException("An error occurred while parsing the XML document.", e);
         } catch (IOException e) {
             LOG.error("Error while reading the XML stream : ", e);
-            throw new PurpleException("An I/O error occured while reading the XML stream.", e);
+            throw new PurpleException("An I/O error occurred while reading the XML stream.", e);
         }
 
     }
@@ -164,13 +164,13 @@ public final class XMLTools {
 
         } catch (ParserConfigurationException e) {
             LOG.error("XML parser configuration problem : ", e);
-            throw new PurpleException("An error occured while configuring the XML parser.", e);
+            throw new PurpleException("An error occurred while configuring the XML parser.", e);
         } catch (SAXException e) {
             LOG.error("XML syntax problem : ", e);
-            throw new PurpleException("An error occured while parsing the XML document.", e);
+            throw new PurpleException("An error occurred while parsing the XML document.", e);
         } catch (IOException e) {
             LOG.error("Error while reading the XML file : ", e);
-            throw new PurpleException("An I/O error occured while reading the XML file.", e);
+            throw new PurpleException("An I/O error occurred while reading the XML file.", e);
         }
 
     }
@@ -526,7 +526,7 @@ public final class XMLTools {
                     "Unable to create the target file " + destination.getAbsolutePath(), e);
 
         } catch (IOException e) {
-            LOG.error("An error occured while writing to the file.");
+            LOG.error("An error occurred while writing to the file.");
             throw new PurpleException(
                     "Unable to write to the target file " + destination.getAbsolutePath(), e);
         }

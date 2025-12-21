@@ -3,7 +3,7 @@ package io.github.purpleloop.commons.lang;
 import java.util.Arrays;
 import java.util.List;
 
-/** A multi-dimensionnal recursive array. */
+/** A multi-dimensional recursive array. */
 public class RecursiveArray {
 
     /** Number of dimensions. */
@@ -22,7 +22,15 @@ public class RecursiveArray {
      */
     public RecursiveArray(List<Integer> dimensionSizes) {
 
+        if (dimensionSizes == null) {
+            throw new IllegalArgumentException("dimensionSizes is null");
+        }
+
         dimension = dimensionSizes.size();
+
+        if (dimension == 0) {
+            throw new IllegalArgumentException("dimensionSizes must not be empty");
+        }
 
         size = dimensionSizes.get(0);
         storage = new Object[size];
@@ -94,7 +102,12 @@ public class RecursiveArray {
     @SuppressWarnings("unchecked")
     public <T> T getObject(List<Integer> coords) {
 
+        if (coords == null) {
+            throw new IllegalArgumentException("Coordinates forGetObject must not be null");
+        }
+
         int coordsSize = coords.size();
+
         int coordValue;
 
         if (coordsSize == 1) {
@@ -128,6 +141,10 @@ public class RecursiveArray {
      * @param value the value to set
      */
     public <T> void setObject(T value, List<Integer> coords) {
+
+        if (coords == null) {
+            throw new IllegalArgumentException("Coordinates forGetObject must not be null");
+        }
 
         int coordsSize = coords.size();
         int coordValue = -1;

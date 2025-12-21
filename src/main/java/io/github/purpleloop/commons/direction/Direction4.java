@@ -3,7 +3,7 @@ package io.github.purpleloop.commons.direction;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Models directions with 4 position and mapping to cardinals (coordinence 4). */
+/** Models directions with 4 position and mapping to cardinals (coordination 4). */
 public final class Direction4 extends EnumeratedDirection {
 
     /** Constant for the direction indicating the east. */
@@ -56,7 +56,7 @@ public final class Direction4 extends EnumeratedDirection {
     /**
      * List of all possible directions.
      * 
-     * @return lists or all directions for this coordinence
+     * @return lists or all directions for this coordination
      */
     public static List<Direction> values() {
         return values;

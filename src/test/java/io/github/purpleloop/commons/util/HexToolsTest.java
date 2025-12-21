@@ -64,7 +64,7 @@ public class HexToolsTest {
     }
 
     /**
-     * Tests hex buffer conversion - Rises an exception because offset is
+     * Tests hex buffer conversion - Raises an exception because offset is
      * negative.
      */
     @Test
@@ -77,7 +77,7 @@ public class HexToolsTest {
     }
 
     /**
-     * Tests hex buffer conversion - Rises an exception because offset is beyond
+     * Tests hex buffer conversion - Raises an exception because offset is beyond
      * limits of the buffer.
      */
     @Test
@@ -90,7 +90,7 @@ public class HexToolsTest {
     }
 
     /**
-     * Tests hex buffer conversion - Rises an exception because requested length
+     * Tests hex buffer conversion - Raises an exception because requested length
      * goes beyond limits of the buffer.
      */
     @Test

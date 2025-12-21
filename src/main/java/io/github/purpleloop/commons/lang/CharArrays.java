@@ -12,7 +12,7 @@ public final class CharArrays {
     /**
      * Swap two chars of a char array given by their respective positions.
      * 
-     * The function may rise an ArrayIndexOutOfBoundsException for unexpected
+     * The function may raise an ArrayIndexOutOfBoundsException for unexpected
      * arguments.
      * 
      * Warning: the array given in parameters is modified by the function.
@@ -27,11 +27,11 @@ public final class CharArrays {
         int len = charArray.length;
         if (a < 0 || a >= len) {
             throw new ArrayIndexOutOfBoundsException(
-                    "Index " + a + " is out of bounds [0, " + len + "]");
+                    "Index " + a + " is out of bounds [0, " + (len - 1) + "]");
         }
         if (b < 0 || b >= len) {
             throw new ArrayIndexOutOfBoundsException(
-                    "Index " + b + " is out of bounds [0, " + len + "]");
+                    "Index " + b + " is out of bounds [0, " + (len - 1) + "]");
         }
 
         if (a == b) {

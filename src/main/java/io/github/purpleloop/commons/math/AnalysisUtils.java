@@ -16,7 +16,7 @@ public final class AnalysisUtils {
      * </p>
      * 
      * <p>
-     * The function rises an IllegalArgumentException if minimal is higher than
+     * The function raises an IllegalArgumentException if minimal is higher than
      * maximal.
      * </p>
      * 
@@ -28,7 +28,7 @@ public final class AnalysisUtils {
     public static int bound(int value, int min, int max) {
 
         if (max < min) {
-            throw new IllegalArgumentException("Maximal value should be lower than minimal value.");
+            throw new IllegalArgumentException("Maximal value should be greater than minimal value.");
         } else if (value < min) {
             return min;
         } else if (value > max) {

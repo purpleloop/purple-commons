@@ -1,44 +1,44 @@
 package io.github.purpleloop.commons.direction;
 
-/** Models directions for a given coordinence by enumeration. */
+/** Models directions for a given coordination by enumeration. */
 public abstract class EnumeratedDirection extends Direction {
 
-    /** The coordinence, number of distinct directions on the circle. */
-    private int coordinence;
+    /** The coordination, number of distinct directions on the circle. */
+    private int coordination;
 
     /**
      * Creates an enumerated direction.
      * 
-     * @param coordinence the coordinence
+     * @param coordination the coordination
      * @param value the value to add
      * @param name name associated to the value
      */
-    protected EnumeratedDirection(int coordinence, int value, String name) {
+    protected EnumeratedDirection(int coordination, int value, String name) {
 
         super(value, name);
-        this.coordinence = coordinence;
+        this.coordination = coordination;
     }
 
     /**
-     * @return the coordinence
+     * @return the coordination
      */
-    public int getCoordinence() {
-        return coordinence;
+    public int getCoordination() {
+        return coordination;
     }
 
     @Override
     public Direction next(boolean clockWise) {
-        return next(clockWise ? 1 : getCoordinence() - 1);
+        return next(clockWise ? 1 : getCoordination() - 1);
     }
 
     @Override
     public Direction next(int increment) {
 
         int newValue = (value + increment);
-        if (newValue >= coordinence) {
-            newValue = newValue % coordinence;
+        if (newValue >= coordination) {
+            newValue = newValue % coordination;
         } else if (newValue < 0) {
-            newValue = newValue + coordinence;
+            newValue = newValue + coordination;
         }
 
         return getDirectionForValue(newValue);
@@ -55,7 +55,7 @@ public abstract class EnumeratedDirection extends Direction {
     @Override
     public Direction opposite() {
 
-        int coord = getCoordinence();
+        int coord = getCoordination();
         return getDirectionForValue((value + coord / 2) % coord);
     }
 }

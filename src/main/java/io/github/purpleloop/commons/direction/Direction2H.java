@@ -46,7 +46,7 @@ public final class Direction2H extends EnumeratedDirection {
     /**
      * List of all possible directions.
      * 
-     * @return lists or all directions for this coordinence
+     * @return lists or all directions for this coordination
      */
     public static List<Direction> values() {
         return values;
