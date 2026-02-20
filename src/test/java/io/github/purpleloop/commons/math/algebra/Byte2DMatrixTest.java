@@ -1,4 +1,4 @@
-package io.github.purpleloop.commons.lang;
+package io.github.purpleloop.commons.math.algebra;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

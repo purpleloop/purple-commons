@@ -1,4 +1,4 @@
-package io.github.purpleloop.commons.lang;
+package io.github.purpleloop.commons.math.algebra;
 
 import io.github.purpleloop.commons.util.HexTools;
 
