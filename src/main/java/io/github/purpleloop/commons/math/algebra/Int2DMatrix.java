@@ -44,14 +44,14 @@ public class Int2DMatrix {
     /**
      * @return the matrix width
      */
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
     /**
      * @return the matrix height
      */
-    int getHeight() {
+    public int getHeight() {
         return height;
     }
 
@@ -62,7 +62,7 @@ public class Int2DMatrix {
      * @param y ordinate
      * @return the matrix value
      */
-    int get(int x, int y) {
+    public int get(int x, int y) {
         return matrix[x][y];
     }
 
@@ -73,15 +73,41 @@ public class Int2DMatrix {
      * @param y ordinate
      * @param value the matrix value
      */
-    void set(int x, int y, int value) {
+    public void set(int x, int y, int value) {
         matrix[x][y] = value;
     }
 
     /**
      * @return true if matrix is square, false otherwise
      */
-    boolean isSquare() {
+    public boolean isSquare() {
         return height == width;
+    }
+
+    /**
+     * @param rowNum the row where to sum
+     * @return sum of all the matrix values for the given row
+     */
+    public int arraySumW(int rowNum) {
+        int sum = 0;
+        for (int colNum = 0; colNum < width; colNum++) {
+            sum += this.matrix[colNum][rowNum];
+        }
+
+        return sum;
+    }
+
+    /**
+     * @param colNum the column where to sum
+     * @return sum of all the matrix values for the given column
+     */
+    public int arraySumH(int colNum) {
+        int sum = 0;
+        for (int rowNum = 0; rowNum < height; rowNum++) {
+            sum += this.matrix[colNum][rowNum];
+        }
+
+        return sum;
     }
 
 }
