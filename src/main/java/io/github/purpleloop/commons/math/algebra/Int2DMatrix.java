@@ -155,4 +155,31 @@ public class Int2DMatrix {
         return true;
     }
 
+    /** @return a string representing formatted the matrix */
+    public String toPrettyString() {
+
+        StringBuilder sbMatrix = new StringBuilder();
+
+        sbMatrix.append("[\n");
+        for (int y = 0; y < height; y++) {
+
+            sbMatrix.append("  [");
+
+            for (int x = 0; x < width; x++) {
+                if (x > 0) {
+                    sbMatrix.append(", ");
+                }
+                sbMatrix.append(this.matrix[x][y]);
+            }
+            sbMatrix.append("]");
+            if (y < height - 1) {
+                sbMatrix.append(",");
+            }
+            sbMatrix.append("\n");
+
+        }
+        sbMatrix.append("]");
+        return sbMatrix.toString();
+    }
+
 }

@@ -84,7 +84,7 @@ public class Int2DMatrixTest {
         assertTrue(matrix.isSquare());
         assertTrue(matrix.isDiagonal());
     }
-    
+
     /** Tests a simple diagonal matrix - ko not square. */
     @Test
     void testDiagonalKoNotSquare() {
@@ -94,7 +94,6 @@ public class Int2DMatrixTest {
         assertFalse(matrix.isDiagonal());
     }
 
-
     /** Tests a simple diagonal matrix - ko value outside diagonal. */
     @Test
     void testDiagonalKoValuesOutside() {
@@ -102,6 +101,18 @@ public class Int2DMatrixTest {
         Int2DMatrix matrix = new Int2DMatrix(TRIANGULAR);
         assertTrue(matrix.isSquare());
         assertFalse(matrix.isDiagonal());
-    }    
-    
+    }
+
+    /** Test of rendering a matrix as a formatted string. */
+    @Test
+    void testToPrettyString() {
+        Int2DMatrix matrix = new Int2DMatrix(M);
+        assertEquals("""
+                [
+                  [1, 2, 3, 4],
+                  [5, 6, 7, 8],
+                  [9, 10, 11, 12]
+                ]""", matrix.toPrettyString());
+    }
+
 }
